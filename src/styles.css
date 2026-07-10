@@ -1,1 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+    --brand-matte-black: #121212;
+    --brand-green: #2ecc71;        
+    --brand-green-hover: #27ae60;  
+    --brand-green-light: rgba(46, 204, 113, 0.1); 
+    
+    --apple-bg-main: #1e1e24;      
+    --apple-bg-card: #16161a;      
+    --apple-nav-bg: rgba(22, 22, 26, 0.85);
+    --apple-text-dark: #f5f5f7;    
+    --apple-text-muted: #a1a1a6;   
+    --apple-text-ultra-muted: #6e6e73;
+    --apple-border: #2a2a32;       
+    --radius-apple: 20px;
+    --transition-smooth: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: -0.022em;
+}
+
+body {
+    background-color: var(--apple-bg-main);
+    color: var(--apple-text-dark);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
