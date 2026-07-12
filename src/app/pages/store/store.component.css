@@ -1,0 +1,67 @@
+.sub-nav {
+    background: rgba(22, 22, 26, 0.8);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-bottom: 1px solid var(--apple-border);
+    position: sticky;
+    top: 48px; /* Fica logo abaixo do header */
+    z-index: 99;
+}
+
+.sub-nav-container {
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+/* Esconder barra de rolagem horizontal em telas pequenas */
+.sub-nav-container::-webkit-scrollbar {
+    display: none;
+}
+
+.sub-nav-container button {
+    background: none;
+    border: none;
+    color: var(--apple-text-muted);
+    font-size: 0.75rem;
+    cursor: pointer;
+    padding: 0.5rem 0;
+    transition: var(--transition-smooth);
+    font-weight: 400;
+}
+
+.sub-nav-container button:hover,
+.sub-nav-container button.active {
+    color: var(--brand-green);
+}
+
+.main-content {
+    min-height: calc(100vh - 48px - 44px); /* desconta header e sub-nav */
+    background: var(--apple-bg-dark);
+}
+
+/* Estilo temporário para os blocos enquanto não colocamos os componentes reais */
+.placeholder-section {
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 4rem 1.5rem;
+    text-align: center;
+    color: var(--apple-text-dark);
+}
+
+.placeholder-section h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--apple-text-dark);
+}
+
+.placeholder-section p {
+    color: var(--apple-text-muted);
+    font-size: 1rem;
+}

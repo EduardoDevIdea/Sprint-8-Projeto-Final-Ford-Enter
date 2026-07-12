@@ -1,0 +1,79 @@
+header {
+    background: var(--apple-nav-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid var(--apple-border);
+}
+
+.nav-container {
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--apple-text-dark);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.search-box { 
+    position: relative; 
+    width: 280px;
+}
+
+.search-box input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid transparent;
+    border-radius: 8px;
+    padding: 0.4rem 0.8rem 0.4rem 2rem;
+    color: var(--apple-text-dark);
+    font-size: 0.85rem;
+    outline: none;
+    transition: var(--transition-smooth);
+}
+
+.search-box input:focus { 
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--brand-green); 
+}
+
+.search-box i { 
+    position: absolute; 
+    left: 0.7rem; 
+    top: 50%;
+    transform: translateY(-50%); 
+    color: var(--apple-text-muted); 
+    font-size: 0.85rem; 
+}
+
+.btn-toggle-admin {
+    background: var(--brand-green);
+    border: none;
+    color: var(--brand-matte-black);
+    padding: 0.4rem 1rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.btn-toggle-admin:hover { 
+    background: var(--brand-green-hover); 
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(46, 204, 113, 0.3); 
+}

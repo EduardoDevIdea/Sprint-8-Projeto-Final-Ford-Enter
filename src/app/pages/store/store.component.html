@@ -1,1 +1,57 @@
-<p>store works!</p>
+<!-- Header Fixo Superior -->
+<app-header></app-header>
+
+<!-- Menu de Categorias e Serviços (Sub-nav) -->
+<nav class="sub-nav">
+  <div class="sub-nav-container">
+    <button [class.active]="currentView === 'home'" (click)="setView('home')">Sobre Nós</button>
+    <button [class.active]="currentView === 'celulares'" (click)="setView('celulares')">Celulares</button>
+    <button [class.active]="currentView === 'smartwatches'" (click)="setView('smartwatches')">Smart Watchs</button>
+    <button [class.active]="currentView === 'acessorios'" (click)="setView('acessorios')">Acessórios</button>
+    <button [class.active]="currentView === 'manutencao'" (click)="setView('manutencao')">Manutenção</button>
+    <button [class.active]="currentView === 'troca'" (click)="setView('troca')">Programa de Troca</button>
+    <button (click)="scrollToContacts()">Contatos</button>
+  </div>
+</nav>
+
+<!-- Conteúdo Dinâmico Centralizado -->
+<main class="main-content">
+  
+  <!-- Seção 1: Home / Sobre Nós (Carrossel + Grid Completo) -->
+  <section *ngIf="currentView === 'home'">
+    <div class="placeholder-section">
+      <h2>Bem-vindo à ApexStore</h2>
+      <p>Aqui ficará o Carrossel Institucional e a Vitrine de Destaques.</p>
+    </div>
+  </section>
+
+  <!-- Seções 2, 3 e 4: Filtros de Produtos -->
+  <section *ngIf="currentView === 'celulares' || currentView === 'smartwatches' || currentView === 'acessorios'">
+    <div class="placeholder-section">
+      <h2>Categoria: {{ currentView | titlecase }}</h2>
+      <p>A listagem filtrada de produtos será exibida aqui.</p>
+    </div>
+  </section>
+
+  <!-- Seção 5: Manutenção Especializada -->
+  <section *ngIf="currentView === 'manutencao'">
+    <div class="placeholder-section">
+      <h2>Serviços de Manutenção</h2>
+      <p>Aqui ficará a tabela de reparos, o informativo de laboratório e a abertura do Modal.</p>
+    </div>
+  </section>
+
+  <!-- Seção 6: Programa de Troca -->
+  <section *ngIf="currentView === 'troca'">
+    <div class="placeholder-section">
+      <h2>Programa de Troca Smart</h2>
+      <p>Simulador e informações sobre como trocar seu aparelho usado.</p>
+    </div>
+  </section>
+
+</main>
+
+<!-- Footer com Referência de Âncora para Scroll -->
+<div #footerSection>
+  <app-footer></app-footer>
+</div>
