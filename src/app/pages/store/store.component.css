@@ -4,23 +4,23 @@
     -webkit-backdrop-filter: blur(15px);
     border-bottom: 1px solid var(--apple-border);
     position: sticky;
-    top: 48px; /* Fica logo abaixo do header */
+    top: 60px; 
     z-index: 99;
 }
 
 .sub-nav-container {
-    max-width: 1024px;
-    margin: 0 auto;
-    padding: 0 1.5rem;
-    height: 44px;
+    width: 100%; 
+    padding: var(--padding-container);
+    height: 48px;
     display: flex;
     align-items: center;
-    gap: 2rem;
+    justify-content: flex-start; 
+    gap: 2.5rem;
     overflow-x: auto;
     white-space: nowrap;
 }
 
-/* Esconder barra de rolagem horizontal em telas pequenas */
+
 .sub-nav-container::-webkit-scrollbar {
     display: none;
 }
@@ -42,15 +42,15 @@
 }
 
 .main-content {
-    min-height: calc(100vh - 48px - 44px); /* desconta header e sub-nav */
-    background: var(--apple-bg-dark);
+    min-height: calc(100vh - 60px - 48px); 
+    background: var(--apple-bg-main);
 }
 
-/* Estilo temporário para os blocos enquanto não colocamos os componentes reais */
+
 .placeholder-section {
-    max-width: 1024px;
+    width: 100%;
+    padding: 6rem calc(4% + 1rem);
     margin: 0 auto;
-    padding: 4rem 1.5rem;
     text-align: center;
     color: var(--apple-text-dark);
 }

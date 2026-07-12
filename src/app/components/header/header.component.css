@@ -9,13 +9,13 @@ header {
 }
 
 .nav-container {
-    max-width: 1024px;
-    margin: 0 auto;
-    padding: 0 1.5rem;
-    height: 48px;
+    width: 100%;
+    padding: var(--padding-container);
+    height: 60px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 1.5rem;
 }
 
 .logo {
@@ -70,10 +70,25 @@ header {
     border-radius: 20px;
     cursor: pointer;
     transition: var(--transition-smooth);
+    white-space: nowrap;
 }
 
 .btn-toggle-admin:hover { 
     background: var(--brand-green-hover); 
     transform: translateY(-1px);
     box-shadow: 0 4px 12px rgba(46, 204, 113, 0.3); 
+}
+
+/* RESPONSIVIDADE PARA DISPOSITIVOS MÓVEIS (CELULARES) */
+@media (max-width: 768px) {
+    .nav-container {
+        height: auto;
+        padding: 1rem;
+        flex-direction: column; 
+        text-align: center;
+    }
+    
+    .search-box {
+        width: 100%;
+    }
 }

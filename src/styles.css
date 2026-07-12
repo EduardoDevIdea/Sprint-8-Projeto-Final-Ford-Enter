@@ -14,6 +14,9 @@
     --apple-border: #2a2a32;       
     --radius-apple: 20px;
     --transition-smooth: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+
+
+    --padding-container: 0 4%; 
 }
 
 * {
@@ -29,4 +32,11 @@ body {
     color: var(--apple-text-dark);
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
+}
+
+/* AJUSTE RESPONSIVO GLOBAL: Garante que nenhuma imagem estoure o tamanho do contêiner em telas menores */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
 }
