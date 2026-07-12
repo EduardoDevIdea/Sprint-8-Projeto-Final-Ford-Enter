@@ -1,14 +1,8 @@
-export enum ProductCategory {
-  CELLPHONES = 'Celulares',
-  SMARTWATCHES = 'Smart Watchs',
-  ACCESSORIES = 'Acessórios'
-}
-
 export interface Product {
-  id: string;
+  id: number;
   name: string;
+  category: 'celulares' | 'smartwatches' | 'acessorios';
   description: string;
   price: number;
-  category: ProductCategory;
-  imageUrl: string;
+  image: string;
 }
