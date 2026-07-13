@@ -18,18 +18,97 @@
 <main class="main-content">
   
   <!-- Seção 1: Home / Sobre Nós (Carrossel + Grid Completo) -->
-  <section *ngIf="currentView === 'home'">
-    <div class="placeholder-section">
-      <h2>Bem-vindo à ApexStore</h2>
-      <p>Aqui ficará o Carrossel Institucional e a Vitrine de Destaques.</p>
+  <section *ngIf="currentView === 'home'" class="home-section">
+    <!-- Carrossel Institucional -->
+    <div class="carousel-container">
+      <button class="carousel-btn prev" (click)="prevSlide()"><i class="fa-solid fa-chevron-left"></i></button>
+      <button class="carousel-btn next" (click)="nextSlide()"><i class="fa-solid fa-chevron-right"></i></button>
+
+      <div class="carousel-wrapper">
+        <div class="carousel-track" [style.transform]="'translateX(-' + currentSlideIndex * 100 + '%)'">
+          <div *ngFor="let slide of carouselSlides; let idx = index" class="carousel-slide" [ngClass]="slide.bgClass">
+            <div class="slide-text">
+              <h2>{{ slide.badge }}</h2>
+              <h1>{{ slide.title }}</h1>
+              <p>{{ slide.description }}</p>
+              <button class="btn-apple-primary slide-action-btn">{{ slide.actionText }}</button>
+            </div>
+            <div class="slide-image">
+              <img [src]="slide.image" [alt]="slide.title">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-dots">
+        <span *ngFor="let slide of carouselSlides; let idx = index" class="dot" [class.active]="idx === currentSlideIndex" (click)="setSlide(idx)"></span>
+      </div>
+    </div>
+
+    <!-- Vitrine de Destaques -->
+    <div class="main-container">
+      <h2 class="section-headline">Conheça nossos produtos em destaque.</h2>
+
+      <div class="apple-grid">
+        <div *ngFor="let product of featuredProducts" class="apple-card">
+          <div class="card-header">
+            <p class="card-badge">{{ product.category | titlecase }}</p>
+            <h3>{{ product.name }}</h3>
+            <p class="card-desc">{{ product.description }}</p>
+          </div>
+          <div class="card-image-container">
+            <img [src]="product.image" [alt]="product.name" class="card-img">
+          </div>
+          <div class="card-footer">
+            <div class="price-tag">R$ {{ product.price }}</div>
+            <div class="apple-btn-group">
+              <button class="btn-apple-primary">Comprar</button>
+              <button class="btn-apple-secondary">Orçar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Banner de Assistência Técnica -->
+      <section class="maintenance-section">
+        <div class="maintenance-text">
+          <h2>Manutenção e Suporte Técnico Especializado</h2>
+          <p>Substituição expressa de telas, baterias e reparos avançados em placas com total garantia e qualidade premium.</p>
+        </div>
+        <button class="btn-apple-primary" (click)="setView('manutencao')">Ver Serviços</button>
+      </section>
     </div>
   </section>
 
   <!-- Seções 2, 3 e 4: Filtros de Produtos -->
-  <section *ngIf="currentView === 'celulares' || currentView === 'smartwatches' || currentView === 'acessorios'">
-    <div class="placeholder-section">
-      <h2>Categoria: {{ currentView | titlecase }}</h2>
-      <p>A listagem filtrada de produtos será exibida aqui.</p>
+  <section *ngIf="currentView === 'celulares' || currentView === 'smartwatches' || currentView === 'acessorios'" class="category-section">
+    <div class="main-container">
+      <div class="category-header">
+        <h2 class="section-headline">
+          {{ currentView === 'celulares' ? 'Smartphones Premium' : currentView === 'smartwatches' ? 'Wearables & Smartwatches' : 'Acessórios Essenciais' }}
+        </h2>
+        <p class="category-subtitle">Explore nossa seleção exclusiva com garantia e qualidade garantida ApexStore.</p>
+      </div>
+
+      <div class="apple-grid">
+        <div *ngFor="let product of getFilteredProducts()" class="apple-card">
+          <div class="card-header">
+            <p class="card-badge">{{ product.category === 'celulares' ? 'Celular' : product.category === 'smartwatches' ? 'Relógio' : 'Acessório' }}</p>
+            <h3>{{ product.name }}</h3>
+            <p class="card-desc">{{ product.description }}</p>
+          </div>
+          <div class="card-image-container">
+            <img [src]="product.image" [alt]="product.name" class="card-img">
+          </div>
+          <div class="card-footer">
+            <div class="price-tag">R$ {{ product.price }}</div>
+            <div class="apple-btn-group">
+              <button class="btn-apple-primary">Comprar</button>
+              <button class="btn-apple-secondary">Orçar</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 

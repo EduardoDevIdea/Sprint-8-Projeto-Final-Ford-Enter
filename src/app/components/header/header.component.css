@@ -9,8 +9,9 @@ header {
 }
 
 .nav-container {
-    width: 100%;
-    padding: var(--padding-container);
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
     height: 60px;
     display: flex;
     align-items: center;

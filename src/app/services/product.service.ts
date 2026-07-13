@@ -15,7 +15,7 @@ export class ProductService {
       description: 'Tela Liquid Retina HD de 6,1 pol., chip A13 Bionic, câmera dupla de 12 MP com Modo Noturno e conectividade 4G LTE. Clássico e confiável.',
       price: 3999,
       category: 'celulares',
-      image: 'assets/produtos/iphone-11.png'
+      image: 'assets/produtos/iphone-11.jpg'
     },
     {
       id: 2,
@@ -23,7 +23,7 @@ export class ProductService {
       description: 'Design com bordas retas em alumínio aeroespacial, tela Super Retina XDR OLED, chip A14 Bionic, conectividade 5G e sistema MagSafe.',
       price: 4799,
       category: 'celulares',
-      image: 'assets/produtos/iphone-12.png'
+      image: 'assets/produtos/iphone-12.jpg'
     },
     {
       id: 3,
@@ -31,7 +31,7 @@ export class ProductService {
       description: 'Chip A15 Bionic, tela Super Retina XDR com brilho 28% maior, bateria de longa duração e Modo Cinema com foco rack.',
       price: 5299,
       category: 'celulares',
-      image: 'assets/produtos/iphone-13.png'
+      image: 'assets/produtos/iphone-13.jpg'
     },
     {
       id: 4,
@@ -39,7 +39,7 @@ export class ProductService {
       description: 'Sensoriamento de Colisão e SOS Emergência via Satélite, chip A15 Bionic, Photonic Engine para fotos com pouca luz e Modo Ação.',
       price: 5799,
       category: 'celulares',
-      image: 'assets/produtos/iphone-14.png'
+      image: 'assets/produtos/iphone-14.jpg'
     },
     {
       id: 5,
@@ -47,7 +47,7 @@ export class ProductService {
       description: 'USB-C universal, Dynamic Island, câmera principal de 48 MP, chip A16 Bionic e design com vidro fosco.',
       price: 7299,
       category: 'celulares',
-      image: 'assets/produtos/iphone-15.png'
+      image: 'assets/produtos/iphone-15.jpg'
     },
     {
       id: 6,
@@ -55,7 +55,7 @@ export class ProductService {
       description: 'Botão de Câmera com sensor de pressão, Botão de Ação customizável, chip A18 com Apple Intelligence e câmeras verticais para vídeos espaciais.',
       price: 7999,
       category: 'celulares',
-      image: 'assets/produtos/iphone-16.png'
+      image: 'assets/produtos/iphone-16.jpg'
     },
     {
       id: 7,
@@ -63,7 +63,7 @@ export class ProductService {
       description: 'Design em titânio escovado, tela ProMotion 120Hz Always-On, chip A19 Pro, câmera frontal 24 MP e IA contextual.',
       price: 8999,
       category: 'celulares',
-      image: 'assets/produtos/iphone-17.png'
+      image: 'assets/produtos/iphone-17.jpg'
     },
     {
       id: 8,
@@ -71,7 +71,7 @@ export class ProductService {
       description: 'Chip S8, tela Retina OLED de 1000 nits, Detecção de Queda, SOS Emergência e aplicativo Treino com métricas avançadas.',
       price: 2299,
       category: 'smartwatches',
-      image: 'assets/produtos/watch-se.png'
+      image: 'assets/produtos/watch-se.jpg'
     },
     {
       id: 9,
@@ -79,7 +79,7 @@ export class ProductService {
       description: 'Tela Always-On de 42mm, chip S10, sensor de temperatura corporal, carregamento rápido (0 a 80% em 30 min) e conectividade 4G LTE.',
       price: 4599,
       category: 'smartwatches',
-      image: 'assets/produtos/watch-series-10.png'
+      image: 'assets/produtos/watch-series-10.jpg'
     },
     {
       id: 10,
@@ -87,7 +87,7 @@ export class ProductService {
       description: 'Titânio aeroespacial, tela de 3000 nits, chip S9 com gesto de Duplo Toque, GPS de dupla frequência, bateria de 36h e resistência a 100m.',
       price: 7999,
       category: 'smartwatches',
-      image: 'assets/produtos/watch-ultra-2.png'
+      image: 'assets/produtos/watch-ultra-2.jpg'
     },
     {
       id: 11,
