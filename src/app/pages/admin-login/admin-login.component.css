@@ -1,0 +1,163 @@
+.login-wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--apple-bg-main);
+    position: relative;
+    padding: 2rem;
+}
+
+.btn-back {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    color: var(--apple-text-muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: var(--transition-smooth);
+}
+
+.btn-back:hover {
+    color: var(--brand-green);
+}
+
+.login-card {
+    background: var(--apple-bg-card);
+    border: 1px solid var(--apple-border);
+    border-radius: var(--radius-apple);
+    width: 100%;
+    max-width: 420px;
+    padding: 3rem;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+    text-align: center;
+}
+
+.login-card h2 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--apple-text-dark);
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.login-card .subtitle {
+    font-size: 0.85rem;
+    color: var(--apple-text-muted);
+    margin-bottom: 2rem;
+    line-height: 1.4;
+}
+
+.logo {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--apple-text-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.alert {
+    padding: 0.8rem 1rem;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    margin-bottom: 1.5rem;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.alert-error {
+    background: rgba(231, 76, 60, 0.1);
+    border: 1px solid rgba(231, 76, 60, 0.2);
+    color: #e74c3c;
+}
+
+.alert-success {
+    background: rgba(46, 204, 113, 0.1);
+    border: 1px solid rgba(46, 204, 113, 0.2);
+    color: var(--brand-green);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+.form-group label {
+    font-size: 0.8rem;
+    color: var(--apple-text-muted);
+    font-weight: 500;
+    display: block;
+    margin-bottom: 0.4rem;
+}
+
+.login-input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--apple-border);
+    color: var(--apple-text-dark);
+    padding: 0.8rem 1rem;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    outline: none;
+    transition: var(--transition-smooth);
+}
+
+.login-input:focus {
+    border-color: var(--brand-green);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.btn-submit {
+    margin-top: 1rem;
+    padding: 0.8rem;
+    font-size: 0.9rem;
+    border-radius: 10px;
+    cursor: pointer;
+    border: none;
+}
+
+.toggle-mode-wrapper {
+    margin-top: 1.5rem;
+    font-size: 0.85rem;
+    color: var(--apple-text-muted);
+}
+
+.toggle-mode-wrapper a {
+    color: var(--brand-green);
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 0.3rem;
+}
+
+.toggle-mode-wrapper a:hover {
+    text-decoration: underline;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+@media (max-width: 480px) {
+    .btn-back {
+        position: relative;
+        top: 0;
+        left: 0;
+        margin-bottom: 1.5rem;
+    }
+    .login-wrapper {
+        flex-direction: column;
+        justify-content: flex-start;
+        padding-top: 3rem;
+    }
+    .login-card {
+        padding: 2rem;
+    }
+}

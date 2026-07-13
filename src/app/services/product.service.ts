@@ -6,9 +6,11 @@ import { Product } from '../models/product.model';
   providedIn: 'root'
 })
 export class ProductService {
-  
-  // Lista de produtos
-  private products: Product[] = [
+  private storageKey = 'apexstore_products';
+  private products: Product[] = [];
+
+  // Lista de produtos inicial
+  private initialProducts: Product[] = [
     {
       id: 1,
       name: 'iPhone 11 64GB',
@@ -155,10 +157,49 @@ export class ProductService {
     }
   ];
 
-  constructor() {}
+  constructor() {
+    this.loadProducts();
+  }
+
+  private loadProducts(): void {
+    const data = localStorage.getItem(this.storageKey);
+    if (data) {
+      this.products = JSON.parse(data);
+    } else {
+      this.products = [...this.initialProducts];
+      this.saveProducts();
+    }
+  }
+
+  private saveProducts(): void {
+    localStorage.setItem(this.storageKey, JSON.stringify(this.products));
+  }
 
   // Retorna a lista de produtos
   getAllProducts(): Product[] {
     return this.products;
+  }
+
+  // Adiciona um produto
+  addProduct(product: Omit<Product, 'id'>): void {
+    const nextId = this.products.length > 0 ? Math.max(...this.products.map(p => p.id)) + 1 : 1;
+    const newProduct: Product = { ...product, id: nextId };
+    this.products.push(newProduct);
+    this.saveProducts();
+  }
+
+  // Atualiza um produto existente
+  updateProduct(product: Product): void {
+    const index = this.products.findIndex(p => p.id === product.id);
+    if (index !== -1) {
+      this.products[index] = product;
+      this.saveProducts();
+    }
+  }
+
+  // Exclui um produto por ID
+  deleteProduct(id: number): void {
+    this.products = this.products.filter(p => p.id !== id);
+    this.saveProducts();
   }
 }

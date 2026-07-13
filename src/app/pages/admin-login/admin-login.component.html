@@ -1,1 +1,67 @@
-<p>admin-login works!</p>
+<div class="login-wrapper">
+  <!-- Botão Voltar para Vitrine -->
+  <a routerLink="/" class="btn-back">
+    <i class="fa-solid fa-arrow-left"></i> Voltar para a Loja
+  </a>
+
+  <div class="login-card">
+    <div class="logo">
+      <i class="fa-solid fa-cubes" style="color: var(--brand-green);"></i> ApexStore
+    </div>
+
+    <h2>{{ mode === 'login' ? 'Acesso Administrativo' : 'Criar Conta de Admin' }}</h2>
+    <p class="subtitle">
+      {{ mode === 'login' ? 'Insira suas credenciais para gerenciar a loja.' : 'Preencha os campos para registrar um novo administrador.' }}
+    </p>
+
+    <!-- Alertas -->
+    <div class="alert alert-error" *ngIf="errorMessage">
+      <i class="fa-solid fa-circle-exclamation"></i> {{ errorMessage }}
+    </div>
+
+    <div class="alert alert-success" *ngIf="successMessage">
+      <i class="fa-solid fa-circle-check"></i> {{ successMessage }}
+    </div>
+
+    <form (submit)="onSubmit($event)" class="login-form">
+      <!-- Campo Nome (Somente Cadastro) -->
+      <div class="form-group" *ngIf="mode === 'register'">
+        <label for="regName">Nome Completo</label>
+        <input type="text" id="regName" [(ngModel)]="name" name="name" required placeholder="Digite seu nome..." class="login-input">
+      </div>
+
+      <!-- Campo E-mail -->
+      <div class="form-group">
+        <label for="loginEmail">E-mail</label>
+        <input type="email" id="loginEmail" [(ngModel)]="email" name="email" required placeholder="Ex: admin@apexstore.com" class="login-input">
+      </div>
+
+      <!-- Campo Senha -->
+      <div class="form-group">
+        <label for="loginPassword">Senha</label>
+        <input type="password" id="loginPassword" [(ngModel)]="password" name="password" required placeholder="••••••••" class="login-input">
+      </div>
+
+      <!-- Campo Confirmar Senha (Somente Cadastro) -->
+      <div class="form-group" *ngIf="mode === 'register'">
+        <label for="confirmPassword">Confirmar Senha</label>
+        <input type="password" id="confirmPassword" [(ngModel)]="confirmPassword" name="confirmPassword" required placeholder="••••••••" class="login-input">
+      </div>
+
+      <!-- Botão Enviar -->
+      <button type="submit" class="btn-apple-primary w-100 btn-submit">
+        {{ mode === 'login' ? 'Entrar no Painel' : 'Cadastrar Administrador' }}
+      </button>
+
+      <!-- Alternador de Modos -->
+      <div class="toggle-mode-wrapper">
+        <span>
+          {{ mode === 'login' ? 'Não tem conta?' : 'Já possui conta?' }}
+          <a href="javascript:void(0)" (click)="toggleMode()">
+            {{ mode === 'login' ? 'Cadastre-se' : 'Faça Login' }}
+          </a>
+        </span>
+      </div>
+    </form>
+  </div>
+</div>
