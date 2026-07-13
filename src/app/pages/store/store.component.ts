@@ -1,5 +1,6 @@
 import { Component, ElementRef, ViewChild, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from '../../components/header/header.component';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { ProductService } from '../../services/product.service';
@@ -20,7 +21,7 @@ interface CarouselSlide {
 @Component({
   selector: 'app-store',
   standalone: true,
-  imports: [CommonModule, HeaderComponent, FooterComponent],
+  imports: [CommonModule, FormsModule, HeaderComponent, FooterComponent],
   templateUrl: './store.component.html',
   styleUrls: ['./store.component.css']
 })
@@ -30,6 +31,15 @@ export class StoreComponent implements OnInit, OnDestroy {
   
   // Lista de produtos em destaque
   featuredProducts: Product[] = [];
+
+  // Controle do Simulador de Troca
+  tradeModel = '';
+  tradeCondition = 'excellent';
+  tradeValue = 0;
+
+  // Controle de Modais
+  isModalOpen = false;
+  modalType: 'repair' | 'trade' = 'repair';
 
   // Configuração do Carrossel
   currentSlideIndex = 0;
@@ -172,5 +182,71 @@ export class StoreComponent implements OnInit, OnDestroy {
 
   resetAutoPlay(): void {
     this.startAutoPlay();
+  }
+
+  // Métodos do Simulador de Troca e Modais
+  calculateTradeValue(): void {
+    if (!this.tradeModel) {
+      this.tradeValue = 0;
+      return;
+    }
+    let baseValue = 0;
+    switch (this.tradeModel) {
+      case 'iphone11': baseValue = 1500; break;
+      case 'iphone12': baseValue = 2200; break;
+      case 'iphone13': baseValue = 3000; break;
+      case 'iphone14': baseValue = 4200; break;
+      case 'iphone15': baseValue = 5800; break;
+    }
+    
+    let multiplier = 1.0;
+    if (this.tradeCondition === 'good') multiplier = 0.8;
+    else if (this.tradeCondition === 'fair') multiplier = 0.6;
+    
+    this.tradeValue = Math.round(baseValue * multiplier);
+  }
+
+  openRepairModal(): void {
+    this.modalType = 'repair';
+    this.isModalOpen = true;
+  }
+
+  openTradeModal(): void {
+    this.modalType = 'trade';
+    this.isModalOpen = true;
+  }
+
+  closeModal(): void {
+    this.isModalOpen = false;
+  }
+
+  getTradeDetailsSummary(): string {
+    let modelName = '';
+    switch (this.tradeModel) {
+      case 'iphone11': modelName = 'iPhone 11'; break;
+      case 'iphone12': modelName = 'iPhone 12'; break;
+      case 'iphone13': modelName = 'iPhone 13'; break;
+      case 'iphone14': modelName = 'iPhone 14'; break;
+      case 'iphone15': modelName = 'iPhone 15'; break;
+    }
+    let conditionName = 'Excelente';
+    if (this.tradeCondition === 'good') conditionName = 'Bom';
+    else if (this.tradeCondition === 'fair') conditionName = 'Regular';
+    
+    return `${modelName} (${conditionName}) - Desconto estimado: R$ ${this.tradeValue}`;
+  }
+
+  submitModalForm(event: Event): void {
+    event.preventDefault();
+    const targetPhone = '5571999999999';
+    let text = '';
+    if (this.modalType === 'repair') {
+      text = `Olá ApexStore, gostaria de solicitar um orçamento para consertar meu aparelho.`;
+    } else {
+      text = `Olá ApexStore, fiz a simulação de troca do meu usado pelo Programa Troca Smart: ${this.getTradeDetailsSummary()}.`;
+    }
+    const url = `https://api.whatsapp.com/send?phone=${targetPhone}&text=${encodeURIComponent(text)}`;
+    window.open(url, '_blank');
+    this.isModalOpen = false;
   }
 }

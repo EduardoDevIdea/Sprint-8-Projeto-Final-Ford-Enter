@@ -113,20 +113,182 @@
   </section>
 
   <!-- Seção 5: Manutenção Especializada -->
-  <section *ngIf="currentView === 'manutencao'">
-    <div class="placeholder-section">
-      <h2>Serviços de Manutenção</h2>
-      <p>Aqui ficará a tabela de reparos, o informativo de laboratório e a abertura do Modal.</p>
+  <section *ngIf="currentView === 'manutencao'" class="maintenance-view-section">
+    <div class="main-container">
+      <div class="category-header">
+        <h2 class="section-headline">Serviços de Manutenção Especializada</h2>
+        <p class="category-subtitle">Assistência técnica avançada para iPhones, Apple Watches e iPads com técnicos certificados.</p>
+      </div>
+
+      <!-- Tabela de Reparos e Informativo -->
+      <div class="maintenance-grid">
+        <div class="repairs-table-card">
+          <h3>Tabela de Serviços Frequentes</h3>
+          <table class="repairs-table">
+            <thead>
+              <tr>
+                <th>Serviço</th>
+                <th>Modelos Disponíveis</th>
+                <th>Tempo Médio</th>
+                <th>Valor Inicial</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Troca de Tela (Display)</td>
+                <td>iPhone 11 ao 16 Pro Max</td>
+                <td>40 min</td>
+                <td>R$ 299,00</td>
+              </tr>
+              <tr>
+                <td>Substituição de Bateria</td>
+                <td>iPhone XR ao 15 Pro Max</td>
+                <td>30 min</td>
+                <td>R$ 180,00</td>
+              </tr>
+              <tr>
+                <td>Conector de Carga</td>
+                <td>Todos os modelos</td>
+                <td>1 hora</td>
+                <td>R$ 150,00</td>
+              </tr>
+              <tr>
+                <td>Reparo em Placa (FaceID/Micro Soldagem)</td>
+                <td>iPhone X ao 16 Pro Max</td>
+                <td>1 a 3 dias</td>
+                <td>R$ 350,00</td>
+              </tr>
+              <tr>
+                <td>Troca de Vidro Traseiro</td>
+                <td>iPhone 8 ao 16 Pro Max</td>
+                <td>3 horas</td>
+                <td>R$ 250,00</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="lab-info-card">
+          <div class="lab-badge">Laboratório Próprio</div>
+          <h3>Tecnologia de Ponta</h3>
+          <p>Nossa equipe utiliza ferramentas de última geração para soldagens de precisão (micro soldagem) e reparos em placas-mãe. Garantimos:</p>
+          <ul class="lab-features">
+            <li><i class="fa-solid fa-circle-check"></i> Peças com qualidade original OEM</li>
+            <li><i class="fa-solid fa-circle-check"></i> Garantia de 90 dias em todos os reparos</li>
+            <li><i class="fa-solid fa-circle-check"></i> Laboratório climatizado e antiestático (ESD)</li>
+          </ul>
+          <button class="btn-apple-primary w-100" (click)="openRepairModal()">Solicitar Orçamento Personalizado</button>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- Seção 6: Programa de Troca -->
-  <section *ngIf="currentView === 'troca'">
-    <div class="placeholder-section">
-      <h2>Programa de Troca Smart</h2>
-      <p>Simulador e informações sobre como trocar seu aparelho usado.</p>
+  <section *ngIf="currentView === 'troca'" class="trade-view-section">
+    <div class="main-container">
+      <div class="category-header">
+        <h2 class="section-headline">Programa Troca Smart</h2>
+        <p class="category-subtitle">Use seu celular atual como parte do pagamento para adquirir o seu novo iPhone.</p>
+      </div>
+
+      <!-- Simulador e Passos -->
+      <div class="trade-grid">
+        <div class="simulator-card">
+          <h3>Simulador Instantâneo</h3>
+          <p>Selecione os dados do seu aparelho usado para estimar o valor de troca:</p>
+          
+          <div class="form-group">
+            <label for="deviceModel">Modelo do Aparelho</label>
+            <select id="deviceModel" [(ngModel)]="tradeModel" (change)="calculateTradeValue()" class="trade-select">
+              <option value="">Selecione o modelo...</option>
+              <option value="iphone11">iPhone 11</option>
+              <option value="iphone12">iPhone 12</option>
+              <option value="iphone13">iPhone 13</option>
+              <option value="iphone14">iPhone 14</option>
+              <option value="iphone15">iPhone 15</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="deviceState">Estado de Conservação</label>
+            <select id="deviceState" [(ngModel)]="tradeCondition" (change)="calculateTradeValue()" class="trade-select">
+              <option value="excellent">Excelente (Sem marcas de uso)</option>
+              <option value="good">Bom (Marcas leves de uso)</option>
+              <option value="fair">Regular (Riscos visíveis ou desgaste)</option>
+            </select>
+          </div>
+
+          <div class="trade-result" *ngIf="tradeValue > 0">
+            <p>Seu aparelho usado vale até:</p>
+            <h2 class="trade-price">R$ {{ tradeValue }}</h2>
+            <span class="trade-disclaimer">*Avaliação sujeita a análise presencial física dos técnicos da loja.</span>
+            <button class="btn-apple-primary w-100" style="margin-top: 1.5rem;" (click)="openTradeModal()">Garantir Desconto</button>
+          </div>
+        </div>
+
+        <div class="steps-card">
+          <h3>Como Funciona o Processo?</h3>
+          <div class="trade-step">
+            <div class="step-num">1</div>
+            <div class="step-text">
+              <h4>Faça a Simulação</h4>
+              <p>Estime o valor inicial de desconto aqui no nosso simulador de forma rápida.</p>
+            </div>
+          </div>
+          <div class="trade-step">
+            <div class="step-num">2</div>
+            <div class="step-text">
+              <h4>Avaliação Física</h4>
+              <p>Leve seu aparelho ao nosso ponto de atendimento físico no Shopping Passeio Norte para validação.</p>
+            </div>
+          </div>
+          <div class="trade-step">
+            <div class="step-num">3</div>
+            <div class="step-text">
+              <h4>Upgrade de Aparelho</h4>
+              <p>O valor acordado é abatido instantaneamente na compra do seu novo aparelho. Você sai com seu iPhone configurado!</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
+
+  <!-- Modal de Orçamento / Troca -->
+  <div class="modal-overlay" *ngIf="isModalOpen" (click)="closeModal()">
+    <div class="modal-card" (click)="$event.stopPropagation()">
+      <button class="modal-close" (click)="closeModal()"><i class="fa-solid fa-xmark"></i></button>
+      
+      <div class="modal-header">
+        <h3>{{ modalType === 'repair' ? 'Solicitar Orçamento de Reparo' : 'Garantir Desconto de Troca' }}</h3>
+        <p>Preencha os dados abaixo para receber o atendimento no seu WhatsApp.</p>
+      </div>
+
+      <form (submit)="submitModalForm($event)" class="modal-form">
+        <div class="form-group">
+          <label for="clientName">Nome Completo</label>
+          <input type="text" id="clientName" required placeholder="Digite seu nome..." class="modal-input">
+        </div>
+
+        <div class="form-group">
+          <label for="clientPhone">WhatsApp / Telefone</label>
+          <input type="text" id="clientPhone" required placeholder="(71) 99999-9999" class="modal-input">
+        </div>
+
+        <div class="form-group" *ngIf="modalType === 'repair'">
+          <label for="deviceToRepair">Aparelho e Defeito</label>
+          <textarea id="deviceToRepair" required placeholder="Ex: iPhone 12 Pro - Tela quebrada e bateria descarregando..." class="modal-textarea"></textarea>
+        </div>
+
+        <div class="form-group" *ngIf="modalType === 'trade'">
+          <label>Detalhes do Aparelho Simulado</label>
+          <input type="text" readonly [value]="getTradeDetailsSummary()" class="modal-input disabled">
+        </div>
+
+        <button type="submit" class="btn-apple-primary w-100">Enviar via WhatsApp</button>
+      </form>
+    </div>
+  </div>
 
 </main>
 

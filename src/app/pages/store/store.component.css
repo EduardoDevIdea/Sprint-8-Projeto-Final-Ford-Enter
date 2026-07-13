@@ -432,3 +432,302 @@
     margin-top: -1.5rem;
     margin-bottom: 2rem;
 }
+
+/* --- MANUTENÇÃO E PROGRAMA DE TROCA VIEWS --- */
+.maintenance-grid, .trade-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 2rem;
+    margin-bottom: 5rem;
+    text-align: left;
+}
+
+.repairs-table-card, .lab-info-card, .simulator-card, .steps-card {
+    background: var(--apple-bg-card);
+    border: 1px solid var(--apple-border);
+    border-radius: var(--radius-apple);
+    padding: 2.5rem;
+    box-shadow: 0 4px 25px rgba(0,0,0,0.15);
+}
+
+.repairs-table-card h3, .lab-info-card h3, .simulator-card h3, .steps-card h3 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: var(--apple-text-dark);
+}
+
+.repairs-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.repairs-table th, .repairs-table td {
+    padding: 1rem 0.8rem;
+    text-align: left;
+    border-bottom: 1px solid var(--apple-border);
+    font-size: 0.9rem;
+}
+
+.repairs-table th {
+    color: var(--apple-text-muted);
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+}
+
+.repairs-table td {
+    color: var(--apple-text-dark);
+}
+
+.repairs-table tr:hover td {
+    background: rgba(255,255,255,0.02);
+}
+
+.lab-badge {
+    background: var(--brand-green-light);
+    color: var(--brand-green);
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+}
+
+.lab-info-card p {
+    color: var(--apple-text-muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+}
+
+.lab-features {
+    list-style: none;
+    margin-bottom: 2rem;
+}
+
+.lab-features li {
+    font-size: 0.9rem;
+    color: var(--apple-text-dark);
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.lab-features i {
+    color: var(--brand-green);
+}
+
+.w-100 {
+    width: 100%;
+}
+
+/* --- TRADE PROGRAM VIEW --- */
+.trade-select {
+    width: 100%;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--apple-border);
+    color: var(--apple-text-dark);
+    padding: 0.8rem 1rem;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    outline: none;
+    margin-top: 0.5rem;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.trade-select:focus {
+    border-color: var(--brand-green);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    font-size: 0.85rem;
+    color: var(--apple-text-muted);
+    font-weight: 500;
+}
+
+.trade-result {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--apple-border);
+}
+
+.trade-result p {
+    font-size: 0.9rem;
+    color: var(--apple-text-muted);
+}
+
+.trade-price {
+    font-size: 2.2rem;
+    color: var(--brand-green);
+    font-weight: 700;
+    margin: 0.5rem 0;
+}
+
+.trade-disclaimer {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--apple-text-ultra-muted);
+    line-height: 1.3;
+}
+
+.trade-step {
+    display: flex;
+    gap: 1.2rem;
+    margin-bottom: 1.8rem;
+}
+
+.trade-step:last-child {
+    margin-bottom: 0;
+}
+
+.step-num {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--apple-border);
+    color: var(--brand-green);
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.step-text h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--apple-text-dark);
+    margin-bottom: 0.3rem;
+}
+
+.step-text p {
+    font-size: 0.85rem;
+    color: var(--apple-text-muted);
+    line-height: 1.4;
+}
+
+/* --- MODAL SYSTEM --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.75);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.modal-card {
+    background: var(--apple-bg-card);
+    border: 1px solid var(--apple-border);
+    border-radius: var(--radius-apple);
+    width: 100%;
+    max-width: 500px;
+    padding: 3rem;
+    position: relative;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    animation: modalFadeIn 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    text-align: left;
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: none;
+    border: none;
+    color: var(--apple-text-muted);
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.modal-close:hover {
+    color: var(--apple-text-dark);
+}
+
+.modal-header {
+    margin-bottom: 2rem;
+}
+
+.modal-header h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--apple-text-dark);
+    margin-bottom: 0.5rem;
+}
+
+.modal-header p {
+    color: var(--apple-text-muted);
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.modal-input, .modal-textarea {
+    width: 100%;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--apple-border);
+    color: var(--apple-text-dark);
+    padding: 0.8rem 1rem;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    outline: none;
+    margin-top: 0.5rem;
+    transition: var(--transition-smooth);
+}
+
+.modal-input:focus, .modal-textarea:focus {
+    border-color: var(--brand-green);
+}
+
+.modal-textarea {
+    resize: none;
+    height: 100px;
+}
+
+.modal-input.disabled {
+    background: rgba(255,255,255,0.02);
+    color: var(--apple-text-muted);
+    cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+    .maintenance-grid, .trade-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    .repairs-table-card, .lab-info-card, .simulator-card, .steps-card {
+        padding: 1.5rem;
+    }
+    .modal-card {
+        padding: 2rem;
+    }
+}
