@@ -62,8 +62,7 @@
           <div class="card-footer">
             <div class="price-tag">R$ {{ product.price }}</div>
             <div class="apple-btn-group">
-              <button class="btn-apple-primary">Comprar</button>
-              <button class="btn-apple-secondary">Orçar</button>
+              <button class="btn-apple-primary" (click)="buyProduct(product)">Comprar</button>
             </div>
           </div>
         </div>
@@ -116,8 +115,7 @@
           <div class="card-footer">
             <div class="price-tag">R$ {{ product.price }}</div>
             <div class="apple-btn-group">
-              <button class="btn-apple-primary">Comprar</button>
-              <button class="btn-apple-secondary">Orçar</button>
+              <button class="btn-apple-primary" (click)="buyProduct(product)">Comprar</button>
             </div>
           </div>
         </div>

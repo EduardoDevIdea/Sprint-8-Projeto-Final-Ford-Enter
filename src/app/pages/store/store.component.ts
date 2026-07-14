@@ -266,4 +266,11 @@ export class StoreComponent implements OnInit, OnDestroy {
     window.open(url, '_blank');
     this.isModalOpen = false;
   }
+
+  buyProduct(product: Product): void {
+    const targetPhone = '5571999999999';
+    const text = `Olá ApexStore, gostaria de comprar o ${product.name}.`;
+    const url = `https://api.whatsapp.com/send?phone=${targetPhone}&text=${encodeURIComponent(text)}`;
+    window.open(url, '_blank');
+  }
 }
