@@ -297,7 +297,7 @@
 
         <div class="form-group">
           <label for="clientPhone">WhatsApp / Telefone</label>
-          <input type="text" id="clientPhone" required placeholder="(71) 99999-9999" class="modal-input">
+          <input type="text" id="clientPhone" required placeholder="(71) 99999-9999" class="modal-input" maxlength="15" (input)="applyPhoneMask($event)">
         </div>
 
         <div class="form-group" *ngIf="modalType === 'repair'">

@@ -237,6 +237,23 @@ export class StoreComponent implements OnInit, OnDestroy {
     this.isModalOpen = false;
   }
 
+  applyPhoneMask(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    let value = input.value.replace(/\D/g, '').slice(0, 11);
+
+    if (value.length > 0) {
+      if (value.length <= 2) {
+        value = `(${value}`;
+      } else if (value.length <= 7) {
+        value = `(${value.slice(0, 2)}) ${value.slice(2)}`;
+      } else {
+        value = `(${value.slice(0, 2)}) ${value.slice(2, 7)}-${value.slice(7)}`;
+      }
+    }
+
+    input.value = value;
+  }
+
   getTradeDetailsSummary(): string {
     let modelName = '';
     switch (this.tradeModel) {
