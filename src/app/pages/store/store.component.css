@@ -637,6 +637,11 @@
     border-color: var(--brand-green);
 }
 
+.trade-select option {
+    background-color: var(--apple-bg-card);
+    color: var(--apple-text-dark);
+}
+
 .form-group {
     margin-bottom: 1.5rem;
 }
