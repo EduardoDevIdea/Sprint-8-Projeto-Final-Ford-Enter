@@ -2,8 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ProductService } from '../../services/product.service';
-import { Product } from '../../models/product.model';
+
+interface DemoRequest {
+  client: string;
+  nature: string;
+  relatedItem: string;
+  status: string;
+  statusClass: 'pending' | 'completed';
+}
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -13,139 +19,45 @@ import { Product } from '../../models/product.model';
   styleUrl: './admin-dashboard.component.css'
 })
 export class AdminDashboardComponent implements OnInit {
-  products: Product[] = [];
   adminEmail = '';
 
-  // Específicos do CRUD
-  isEditing = false;
-  showAddForm = false;
-  editingProductId: number | null = null;
+  demoMetrics = [
+    { label: 'Vendas Mensais', value: 'R$ 68.200', icon: 'fa-coins', accent: 'var(--brand-green)' },
+    { label: 'Orçamentos Pendentes', value: '18', icon: 'fa-file-lines' },
+    { label: 'Ordens de Reparo', value: '09', icon: 'fa-screwdriver-wrench' },
+    { label: 'Fornecedores Ativos', value: '24', icon: 'fa-truck' }
+  ];
 
-  // Campos do Formulário
-  productName = '';
-  productDescription = '';
-  productPrice = 0;
-  productCategory: 'celulares' | 'smartwatches' | 'acessorios' = 'celulares';
-  productImage = '';
+  demoRequests: DemoRequest[] = [
+    {
+      client: 'Carlos Silva',
+      nature: 'Orçamento Venda',
+      relatedItem: 'Apex Phone 16 Pro',
+      status: 'Pendente',
+      statusClass: 'pending'
+    },
+    {
+      client: 'Mariana Costa',
+      nature: 'Manutenção Técnica',
+      relatedItem: 'Substituição de Módulo - Watch',
+      status: 'Concluído',
+      statusClass: 'completed'
+    },
+    {
+      client: 'Roberto Souza',
+      nature: 'Pedido Direto',
+      relatedItem: 'Apex Acoustic Pro',
+      status: 'Concluído',
+      statusClass: 'completed'
+    }
+  ];
 
-  // Métricas do Dashboard
-  totalProducts = 0;
-  totalStockValue = 0;
-  celularesCount = 0;
-  smartwatchesCount = 0;
-  acessoriosCount = 0;
-
-  constructor(
-    private productService: ProductService,
-    private router: Router
-  ) {
-    this.adminEmail = localStorage.getItem('adminEmail') || 'admin@apexstore.com';
+  constructor(private router: Router) {
+    this.adminEmail = localStorage.getItem('adminEmail') || 'admin@email.com';
   }
 
   ngOnInit(): void {
-    this.loadData();
-  }
-
-  loadData(): void {
-    this.products = this.productService.getAllProducts();
-    this.calculateStats();
-  }
-
-  calculateStats(): void {
-    this.totalProducts = this.products.length;
-    this.totalStockValue = this.products.reduce((acc, p) => acc + p.price, 0);
-    
-    this.celularesCount = this.products.filter(p => p.category === 'celulares').length;
-    this.smartwatchesCount = this.products.filter(p => p.category === 'smartwatches').length;
-    this.acessoriosCount = this.products.filter(p => p.category === 'acessorios').length;
-  }
-
-  toggleAddForm(): void {
-    this.showAddForm = !this.showAddForm;
-    this.isEditing = false;
-    this.clearForm();
-  }
-
-  onAddProduct(event: Event): void {
-    event.preventDefault();
-    if (!this.productName || !this.productDescription || this.productPrice <= 0) {
-      alert('Preencha os campos obrigatórios.');
-      return;
-    }
-
-    // Set fallback image if empty
-    const imgPath = this.productImage || 'assets/produtos/placeholder.png';
-
-    this.productService.addProduct({
-      name: this.productName,
-      description: this.productDescription,
-      price: this.productPrice,
-      category: this.productCategory,
-      image: imgPath
-    });
-
-    this.loadData();
-    this.showAddForm = false;
-    this.clearForm();
-  }
-
-  onEditProduct(product: Product): void {
-    this.isEditing = true;
-    this.showAddForm = false;
-    this.editingProductId = product.id;
-    
-    this.productName = product.name;
-    this.productDescription = product.description;
-    this.productPrice = product.price;
-    this.productCategory = product.category;
-    this.productImage = product.image;
-    
-    // Rola suavemente até o formulário
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
-  onSaveProduct(event: Event): void {
-    event.preventDefault();
-    if (this.editingProductId === null || !this.productName || !this.productDescription || this.productPrice <= 0) {
-      alert('Preencha os campos obrigatórios.');
-      return;
-    }
-
-    this.productService.updateProduct({
-      id: this.editingProductId,
-      name: this.productName,
-      description: this.productDescription,
-      price: this.productPrice,
-      category: this.productCategory,
-      image: this.productImage
-    });
-
-    this.loadData();
-    this.cancelEdit();
-  }
-
-  onDeleteProduct(id: number): void {
-    if (confirm('Tem certeza de que deseja excluir este produto?')) {
-      this.productService.deleteProduct(id);
-      this.loadData();
-      if (this.editingProductId === id) {
-        this.cancelEdit();
-      }
-    }
-  }
-
-  cancelEdit(): void {
-    this.isEditing = false;
-    this.editingProductId = null;
-    this.clearForm();
-  }
-
-  clearForm(): void {
-    this.productName = '';
-    this.productDescription = '';
-    this.productPrice = 0;
-    this.productCategory = 'celulares';
-    this.productImage = '';
+    // Dados demonstrativos fixos.
   }
 
   logout(): void {

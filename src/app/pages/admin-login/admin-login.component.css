@@ -1,29 +1,57 @@
-.login-wrapper {
+.login-shell {
     min-height: 100vh;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
     background-color: var(--apple-bg-main);
-    position: relative;
-    padding: 2rem;
 }
 
-.btn-back {
-    position: absolute;
-    top: 2rem;
-    left: 2rem;
+.store-header {
+    width: 100%;
+    border-bottom: 1px solid var(--apple-border);
+    background: var(--apple-nav-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+.store-header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.store-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--apple-text-dark);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.header-link {
     color: var(--apple-text-muted);
     text-decoration: none;
     font-size: 0.85rem;
     font-weight: 500;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    transition: var(--transition-smooth);
+    gap: 0.4rem;
 }
 
-.btn-back:hover {
+.header-link:hover {
     color: var(--brand-green);
+}
+
+.login-wrapper {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
 }
 
 .login-card {
@@ -185,19 +213,40 @@
     width: 100%;
 }
 
+.store-footer {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1.2rem 1.5rem 1.8rem;
+    color: var(--apple-text-muted);
+    font-size: 0.8rem;
+    text-align: center;
+    border-top: 1px solid var(--apple-border);
+    background: var(--apple-bg-main);
+}
+
+.store-footer a {
+    color: var(--brand-green);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.store-footer a:hover {
+    text-decoration: underline;
+}
+
 @media (max-width: 480px) {
-    .btn-back {
-        position: relative;
-        top: 0;
-        left: 0;
-        margin-bottom: 1.5rem;
-    }
     .login-wrapper {
-        flex-direction: column;
         justify-content: flex-start;
         padding-top: 3rem;
     }
+
     .login-card {
         padding: 2rem;
+    }
+
+    .store-footer {
+        flex-direction: column;
+        gap: 0.35rem;
     }
 }
