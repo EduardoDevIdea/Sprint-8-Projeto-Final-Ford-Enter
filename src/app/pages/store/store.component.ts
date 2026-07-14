@@ -166,7 +166,7 @@ export class StoreComponent implements OnInit, OnDestroy {
   // Executa a rolagem suave até o rodapé
   scrollToContacts(): void {
     if (this.footerElement) {
-      this.footerElement.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      this.footerElement.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'end' });
     }
   }
 

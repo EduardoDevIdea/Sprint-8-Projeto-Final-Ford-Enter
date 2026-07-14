@@ -30,24 +30,6 @@ header {
     transition: var(--transition-smooth);
 }
 
-.btn-toggle-admin {
-    background: var(--brand-green);
-    border: none;
-    color: var(--brand-matte-black);
-    padding: 0.4rem 1rem;
-    font-size: 0.75rem;
-    font-weight: 600;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: var(--transition-smooth);
-    white-space: nowrap;
-}
-
-.btn-toggle-admin:hover { 
-    background: var(--brand-green-hover); 
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(46, 204, 113, 0.3); 
-}
 
 /* RESPONSIVIDADE PARA DISPOSITIVOS MÓVEIS (CELULARES) */
 @media (max-width: 768px) {
