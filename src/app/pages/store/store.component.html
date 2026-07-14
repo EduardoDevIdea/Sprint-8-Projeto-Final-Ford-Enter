@@ -84,13 +84,26 @@
   <section *ngIf="currentView === 'celulares' || currentView === 'smartwatches' || currentView === 'acessorios'" class="category-section">
     <div class="main-container">
       <div class="category-header">
-        <h2 class="section-headline">
-          {{ currentView === 'celulares' ? 'Smartphones Premium' : currentView === 'smartwatches' ? 'Wearables & Smartwatches' : 'Acessórios Essenciais' }}
-        </h2>
+        <div class="category-header-top">
+          <h2 class="section-headline">
+            {{ currentView === 'celulares' ? 'Smartphones Premium' : currentView === 'smartwatches' ? 'Wearables & Smartwatches' : 'Acessórios Essenciais' }}
+          </h2>
+          <!-- Input de busca alinhado do outro lado, apenas para celulares e acessorios -->
+          <div class="store-search-box" *ngIf="currentView === 'celulares' || currentView === 'acessorios'">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <input 
+              type="text" 
+              [(ngModel)]="searchQuery" 
+              [placeholder]="currentView === 'celulares' ? 'Buscar celular...' : 'Buscar acessório...'"
+              class="store-search-input"
+            >
+          </div>
+        </div>
         <p class="category-subtitle">Explore nossa seleção exclusiva com garantia e qualidade garantida ApexStore.</p>
       </div>
 
-      <div class="apple-grid">
+      <!-- Se houver produtos, exibe o grid -->
+      <div class="apple-grid" *ngIf="getFilteredProducts().length > 0">
         <div *ngFor="let product of getFilteredProducts()" class="apple-card">
           <div class="card-header">
             <p class="card-badge">{{ product.category === 'celulares' ? 'Celular' : product.category === 'smartwatches' ? 'Relógio' : 'Acessório' }}</p>
@@ -108,6 +121,20 @@
             </div>
           </div>
         </div>
+      </div>
+
+      <!-- Se NÃO houver produtos (nenhum item encontrado), exibe mensagem -->
+      <div class="no-products-message" *ngIf="getFilteredProducts().length === 0">
+        <i class="fa-solid fa-circle-info message-icon"></i>
+        <p *ngIf="currentView === 'celulares'">
+          Nenhum celular encontrado para "{{ searchQuery }}".
+        </p>
+        <p *ngIf="currentView === 'acessorios'">
+          Nenhum acessório encontrado para "{{ searchQuery }}".
+        </p>
+        <p *ngIf="currentView === 'smartwatches'">
+          Nenhum smartwatch encontrado.
+        </p>
       </div>
     </div>
   </section>

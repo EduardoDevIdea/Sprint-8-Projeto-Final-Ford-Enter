@@ -123,22 +123,39 @@ export class StoreComponent implements OnInit, OnDestroy {
     ].filter(p => p !== undefined) as Product[];
   }
 
-  // Retorna os produtos filtrados pela categoria selecionada
+  // Termo de busca digitado pelo usuário
+  searchQuery = '';
+
+  // Retorna os produtos filtrados pela categoria selecionada e busca
   getFilteredProducts(): Product[] {
     const all = this.productService.getAllProducts();
+    let categoryProducts: Product[] = [];
+    
     if (this.currentView === 'celulares') {
-      return all.filter(p => p.category === 'celulares');
+      categoryProducts = all.filter(p => p.category === 'celulares');
     } else if (this.currentView === 'smartwatches') {
-      return all.filter(p => p.category === 'smartwatches');
+      categoryProducts = all.filter(p => p.category === 'smartwatches');
     } else if (this.currentView === 'acessorios') {
-      return all.filter(p => p.category === 'acessorios');
+      categoryProducts = all.filter(p => p.category === 'acessorios');
+    } else {
+      return [];
     }
-    return [];
+
+    if (this.searchQuery && this.searchQuery.trim() !== '') {
+      const query = this.searchQuery.toLowerCase().trim();
+      return categoryProducts.filter(p => 
+        p.name.toLowerCase().includes(query) || 
+        p.description.toLowerCase().includes(query)
+      );
+    }
+
+    return categoryProducts;
   }
 
   // Altera a seção exibida no meio da página
   setView(view: StoreViews): void {
     this.currentView = view;
+    this.searchQuery = ''; // Reseta a busca ao mudar de página
     if (view === 'home') {
       this.resetAutoPlay();
     } else {
