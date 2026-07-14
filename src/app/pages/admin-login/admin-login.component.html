@@ -48,8 +48,19 @@
         <input type="password" id="confirmPassword" [(ngModel)]="confirmPassword" name="confirmPassword" required placeholder="••••••••" class="login-input">
       </div>
 
+      <!-- Consentimento LGPD (Somente Cadastro) -->
+      <div class="privacy-policy-group" *ngIf="mode === 'register'">
+        <label class="privacy-policy-label" for="privacyPolicyCheckbox">
+          <input type="checkbox" id="privacyPolicyCheckbox" [(ngModel)]="acceptsPrivacyPolicy" name="acceptsPrivacyPolicy">
+          <span>
+            Declaro que li e aceito as políticas internas de privacidade. Seus dados cadastrais serão coletados e protegidos rigorosamente em conformidade com a
+            <a href="/assets/lgpd-terms.html" target="_blank" rel="noopener noreferrer">Lei Geral de Proteção de Dados (LGPD)</a>.
+          </span>
+        </label>
+      </div>
+
       <!-- Botão Enviar -->
-      <button type="submit" class="btn-apple-primary w-100 btn-submit">
+      <button type="submit" class="btn-apple-primary w-100 btn-submit" [disabled]="mode === 'register' && !acceptsPrivacyPolicy">
         {{ mode === 'login' ? 'Entrar no Painel' : 'Cadastrar Administrador' }}
       </button>
 

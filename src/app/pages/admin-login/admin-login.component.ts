@@ -18,6 +18,7 @@ export class AdminLoginComponent {
   password = '';
   name = '';
   confirmPassword = '';
+  acceptsPrivacyPolicy = false;
   
   // Feedback
   errorMessage = '';
@@ -38,6 +39,7 @@ export class AdminLoginComponent {
     this.password = '';
     this.name = '';
     this.confirmPassword = '';
+    this.acceptsPrivacyPolicy = false;
   }
 
   onSubmit(event: Event): void {
@@ -58,13 +60,9 @@ export class AdminLoginComponent {
       return;
     }
 
-    // Verifica nos usuários cadastrados ou credencial padrão
-    const registeredUsers = JSON.parse(localStorage.getItem('adminUsers') || '[]');
-    const userFound = registeredUsers.find((u: any) => u.email === this.email && u.password === this.password);
+    const isAuthorizedAdmin = this.email === 'admin@email.com' && this.password === 'admin';
 
-    const isDefaultAdmin = this.email === 'admin@apexstore.com' && this.password === 'admin123';
-
-    if (isDefaultAdmin || userFound) {
+    if (isAuthorizedAdmin) {
       localStorage.setItem('isAdminLoggedIn', 'true');
       localStorage.setItem('adminEmail', this.email);
       this.router.navigate(['/admin-dashboard']);
@@ -79,29 +77,26 @@ export class AdminLoginComponent {
       return;
     }
 
+    if (!this.acceptsPrivacyPolicy) {
+      this.errorMessage = 'Você precisa aceitar as políticas internas de privacidade para concluir o cadastro.';
+      return;
+    }
+
     if (this.password !== this.confirmPassword) {
       this.errorMessage = 'As senhas não coincidem.';
       return;
     }
 
-    const registeredUsers = JSON.parse(localStorage.getItem('adminUsers') || '[]');
-    const emailExists = registeredUsers.some((u: any) => u.email === this.email);
-
-    if (emailExists || this.email === 'admin@apexstore.com') {
-      this.errorMessage = 'Este e-mail já está cadastrado.';
-      return;
-    }
-
-    registeredUsers.push({
-      name: this.name,
-      email: this.email,
-      password: this.password
-    });
-
-    localStorage.setItem('adminUsers', JSON.stringify(registeredUsers));
-    this.successMessage = 'Cadastro realizado com sucesso! Faça login.';
+    this.successMessage = 'Cadastro realizado com sucesso! Seu acesso está pendente de autorização da administração. Você será redirecionado para o login.';
     setTimeout(() => {
-      this.toggleMode();
-    }, 1500);
+      this.mode = 'login';
+      this.errorMessage = '';
+      this.email = '';
+      this.password = '';
+      this.name = '';
+      this.confirmPassword = '';
+      this.acceptsPrivacyPolicy = false;
+      this.successMessage = '';
+    }, 5000);
   }
 }
